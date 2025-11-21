@@ -1,0 +1,4 @@
+project_id = "lbqvsvlckglqjdpoobpo"
+
+[functions.growth-assistant]
+verify_jwt = true
