@@ -108,7 +108,7 @@ const Auth = () => {
             <Baby className="w-12 h-12 text-primary" />
           </motion.div>
           <h1 className="text-4xl font-bold text-white mb-2">KidGrowth+</h1>
-          <p className="text-white/90">Track your child's amazing journey</p>
+          <p className="text-white/90">Teman Tumbuh Kembang Anak</p>
         </div>
 
         <Card className="shadow-card border-0 overflow-hidden">
