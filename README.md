@@ -1,73 +1,178 @@
-# Welcome to your Lovable project
+Here is a clean, professional **README.md** for GitHub, written in English and suitable for your mobile app project.
 
-## Project info
+---
 
-**URL**: https://lovable.dev/projects/8f2b7d66-ace5-49f1-bf90-886c09c3e8f3
+# **KidGrowth+ — AI-Powered Child Growth & Development Tracker**
 
-## How can I edit this code?
+KidGrowth+ is a modern mobile application designed to help parents track and support their child’s growth and development from **3 months to 10 years old**.
+Equipped with **AI-powered insights**, dynamic growth charts, milestone tracking, nutrition planning, immunization reminders, and many more smart features.
 
-There are several ways of editing your application.
+---
 
-**Use Lovable**
+## 🚀 **Features**
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/8f2b7d66-ace5-49f1-bf90-886c09c3e8f3) and start prompting.
+### **📈 1. Physical Growth Tracking**
 
-Changes made via Lovable will be committed automatically to this repo.
+Track the child’s height, weight, and BMI with automatic plotting on WHO-standard growth charts.
 
-**Use your preferred IDE**
+### **🧠 2. Cognitive Development**
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+Monitor developmental progress such as language skills, memory, problem-solving, and age-based learning abilities.
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### **🤝 3. Social & Emotional Stages**
 
-Follow these steps:
+Track emotional responses, social interaction levels, confidence, self-awareness, and communication development.
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+### **🍽️ 4. Nutrition & Immunization**
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+* AI-generated weekly meal plans
+* Calorie and nutrient recommendations
+* Immunization schedule (WHO & Indonesia standards)
+* Automatic reminders
 
-# Step 3: Install the necessary dependencies.
-npm i
+### **📅 5. Daily Habits & Activities**
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+Track sleep, feeding, screen time, water intake, mood, and daily routines.
+
+### **⚠️ 6. Risk Alerts & AI Recommendations**
+
+AI analyzes growth data, milestones, habits, and nutrition to:
+
+* Detect early warning signs
+* Suggest relevant actions
+* Offer personalized parenting tips
+* Answer questions via AI chat
+
+---
+
+## 🤖 **AI-Powered Modules**
+
+### **AI Growth Assistant**
+
+Provides dynamic insights and guidance based on your child's growth data.
+
+### **AI Milestone Analysis**
+
+Evaluates progress across age-appropriate milestones and identifies potential delays.
+
+### **AI Nutrition Planner**
+
+Creates custom weekly meal plans considering the child's age, allergies, and preferences.
+
+---
+
+## 🧩 **Additional Key Features**
+
+* Milestone checklist with photo/video attachments
+* Multi-child profiles
+* Parenting articles & expert videos
+* Cloud backup (Firebase recommended)
+* Push notifications (reminders & alerts)
+* Light/Dark mode
+* Secure login (Email, Google, Apple)
+
+---
+
+## 🎨 **Design & UI**
+
+KidGrowth+ uses a clean, modern, and friendly UI with:
+
+* Pastel color palette
+* Smooth micro-animations
+* Intuitive navigation
+* Accessible typography
+* Kid-friendly illustrations
+
+---
+
+## 🏗️ **Tech Stack**
+
+* **Frontend:** Flutter / React Native
+* **Backend:** Firebase / Supabase
+* **AI Integration:** OpenAI / Gemini API
+* **Authentication:** Firebase Auth
+* **Database:** Firestore / Realtime DB
+* **Charts:** Chart.js / Flutter Charts
+
+---
+
+## 📁 **Project Structure (Example)**
+
+```
+/lib or /src
+│── components/
+│── screens/
+│── services/
+│   ├── ai/
+│   ├── auth/
+│   ├── database/
+│── utils/
+│── models/
+│── assets/
+│── README.md
 ```
 
-**Edit a file directly in GitHub**
+---
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## 🔧 **Installation & Setup**
 
-**Use GitHub Codespaces**
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/kidgrowth-app.git
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+# Navigate to project
+cd kidgrowth-app
 
-## What technologies are used for this project?
+# Install dependencies
+npm install   # or flutter pub get
 
-This project is built with:
+# Run the app
+npm start     # or flutter run
+```
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+---
 
-## How can I deploy this project?
+## 📚 **Internal AI Prompts (Included in App)**
 
-Simply open [Lovable](https://lovable.dev/projects/8f2b7d66-ace5-49f1-bf90-886c09c3e8f3) and click on Share -> Publish.
+### **Growth Analysis Prompt**
 
-## Can I connect a custom domain to my Lovable project?
+“Analyze the child’s growth data (height, weight, age) using WHO standards and provide insights, concerns, and actionable recommendations.”
 
-Yes, you can!
+### **Milestone Evaluation Prompt**
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+“Evaluate these milestone checklists and determine whether the child is developing normally, ahead, or delayed.”
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+### **Nutrition Prompt**
+
+“Generate a weekly meal plan for a child aged ___ with preferences ___ and restrictions ___. Include calories and nutrition summary.”
+
+---
+
+## 🛡️ **Privacy & Data Security**
+
+* No data is shared with third parties
+* Child data is encrypted and stored securely
+* Parents retain full control over their information
+
+---
+
+## 🤝 **Contributing**
+
+Contributions are welcome!
+Please submit a pull request or open an issue if you'd like to improve the project.
+
+---
+
+## 📄 **License**
+
+This project is licensed under the **MIT License**.
+
+---
+
+If you'd like, I can also:
+✅ Generate a **logo**
+✅ Create **UI mockups**
+✅ Write a **technical documentation**
+✅ Create a **Flutter or React Native project skeleton**
+
+Just tell me!
