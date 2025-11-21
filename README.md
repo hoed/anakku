@@ -163,12 +163,4 @@ Please submit a pull request or open an issue if you'd like to improve the proje
 
 This project is licensed under the **MIT License**.
 
----
 
-If you'd like, I can also:
-✅ Generate a **logo**
-✅ Create **UI mockups**
-✅ Write a **technical documentation**
-✅ Create a **Flutter or React Native project skeleton**
-
-Just tell me!
