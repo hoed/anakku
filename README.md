@@ -1,4 +1,4 @@
-# **KidGrowth+ — AI-Powered Child Growth & Development Tracker**
+# **KidGrowth+/ Anakku — AI-Powered Child Growth & Development Tracker**
 
 KidGrowth+ is a modern mobile application designed to help parents track and support their child’s growth and development from **3 months to 10 years old**.
 Equipped with **AI-powered insights**, dynamic growth charts, milestone tracking, nutrition planning, immunization reminders, and many more smart features.
