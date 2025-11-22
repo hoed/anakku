@@ -9,6 +9,8 @@ import { GrowthChart } from '@/components/GrowthChart';
 import { MilestoneTracker } from '@/components/MilestoneTracker';
 import { AIAssistant } from '@/components/AIAssistant';
 import { AddMeasurementDialog } from '@/components/AddMeasurementDialog';
+import { DailyActivityLog } from '@/components/DailyActivityLog';
+import { Footer } from '@/components/Footer';
 import { motion } from 'framer-motion';
 
 interface Child {
@@ -128,9 +130,9 @@ const Dashboard = () => {
             {/* Child Info & Actions */}
             <div className="flex items-center justify-between">
               <div>
-                <h2 className="text-3xl font-bold">{selectedChild.name}'s Dashboard</h2>
+                <h2 className="text-3xl font-bold">Dashboard {selectedChild.name}</h2>
                 <p className="text-muted-foreground">
-                  {calculateAge(selectedChild.date_of_birth)} months old
+                  {calculateAge(selectedChild.date_of_birth)} bulan
                 </p>
               </div>
               <AddMeasurementDialog
@@ -160,6 +162,9 @@ const Dashboard = () => {
 
             {/* Milestones */}
             <MilestoneTracker childId={selectedChild.id} />
+
+            {/* Daily Activity Log */}
+            <DailyActivityLog childId={selectedChild.id} />
           </motion.div>
         ) : (
           <motion.div
@@ -168,13 +173,14 @@ const Dashboard = () => {
             className="text-center py-20"
           >
             <Baby className="w-20 h-20 mx-auto mb-6 text-muted-foreground opacity-50" />
-            <h2 className="text-2xl font-bold mb-2">No child selected</h2>
+            <h2 className="text-2xl font-bold mb-2">Belum ada anak dipilih</h2>
             <p className="text-muted-foreground">
-              Please add or select a child to start tracking their growth
+              Silakan tambahkan atau pilih anak untuk mulai melacak pertumbuhan mereka
             </p>
           </motion.div>
         )}
       </main>
+      <Footer />
     </div>
   );
 };

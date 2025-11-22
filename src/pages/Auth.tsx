@@ -21,8 +21,8 @@ const Auth = () => {
     e.preventDefault();
     if (!email || !password) {
       toast({
-        title: 'Error',
-        description: 'Please fill in all fields',
+        title: 'Kesalahan',
+        description: 'Harap isi semua kolom',
         variant: 'destructive',
       });
       return;
@@ -36,7 +36,7 @@ const Auth = () => {
 
     if (error) {
       toast({
-        title: 'Sign in error',
+        title: 'Kesalahan saat masuk',
         description: error.message,
         variant: 'destructive',
       });
@@ -50,8 +50,8 @@ const Auth = () => {
     e.preventDefault();
     if (!email || !password) {
       toast({
-        title: 'Error',
-        description: 'Please fill in all fields',
+        title: 'Kesalahan',
+        description: 'Harap isi semua kolom',
         variant: 'destructive',
       });
       return;
@@ -59,8 +59,8 @@ const Auth = () => {
 
     if (password.length < 6) {
       toast({
-        title: 'Error',
-        description: 'Password must be at least 6 characters',
+        title: 'Kesalahan',
+        description: 'Kata sandi minimal 6 karakter',
         variant: 'destructive',
       });
       return;
@@ -77,14 +77,14 @@ const Auth = () => {
 
     if (error) {
       toast({
-        title: 'Sign up error',
+        title: 'Kesalahan saat mendaftar',
         description: error.message,
         variant: 'destructive',
       });
     } else {
       toast({
-        title: 'Success!',
-        description: 'Account created. Please check your email to verify.',
+        title: 'Berhasil!',
+        description: 'Akun berhasil dibuat. Silakan cek email Anda untuk verifikasi.',
       });
     }
     setLoading(false);
@@ -114,8 +114,8 @@ const Auth = () => {
         <Card className="shadow-card border-0 overflow-hidden">
           <Tabs defaultValue="signin" className="w-full">
             <TabsList className="grid w-full grid-cols-2 rounded-none">
-              <TabsTrigger value="signin">Sign In</TabsTrigger>
-              <TabsTrigger value="signup">Sign Up</TabsTrigger>
+              <TabsTrigger value="signin">Masuk</TabsTrigger>
+              <TabsTrigger value="signup">Daftar</TabsTrigger>
             </TabsList>
 
             <TabsContent value="signin" className="p-6">
@@ -127,7 +127,7 @@ const Auth = () => {
                     <Input
                       id="email-signin"
                       type="email"
-                      placeholder="parent@example.com"
+                      placeholder="email@anda.com"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       className="pl-10"
@@ -136,7 +136,7 @@ const Auth = () => {
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="password-signin">Password</Label>
+                  <Label htmlFor="password-signin">Kata Sandi</Label>
                   <div className="relative">
                     <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                     <Input
@@ -151,7 +151,7 @@ const Auth = () => {
                   </div>
                 </div>
                 <Button type="submit" className="w-full" disabled={loading}>
-                  {loading ? 'Signing in...' : 'Sign In'}
+                  {loading ? 'Sedang masuk...' : 'Masuk'}
                 </Button>
               </form>
             </TabsContent>
@@ -165,7 +165,7 @@ const Auth = () => {
                     <Input
                       id="email-signup"
                       type="email"
-                      placeholder="parent@example.com"
+                      placeholder="email@anda.com"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       className="pl-10"
@@ -174,7 +174,7 @@ const Auth = () => {
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="password-signup">Password</Label>
+                  <Label htmlFor="password-signup">Kata Sandi</Label>
                   <div className="relative">
                     <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                     <Input
@@ -188,11 +188,11 @@ const Auth = () => {
                     />
                   </div>
                   <p className="text-xs text-muted-foreground">
-                    Must be at least 6 characters
+                    Minimal 6 karakter
                   </p>
                 </div>
                 <Button type="submit" className="w-full" disabled={loading}>
-                  {loading ? 'Creating account...' : 'Sign Up'}
+                  {loading ? 'Membuat akun...' : 'Daftar'}
                 </Button>
               </form>
             </TabsContent>

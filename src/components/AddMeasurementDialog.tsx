@@ -30,8 +30,8 @@ export const AddMeasurementDialog = ({ childId, onMeasurementAdded }: AddMeasure
     
     if (!height || !weight) {
       toast({
-        title: 'Error',
-        description: 'Please fill in all fields',
+        title: 'Kesalahan',
+        description: 'Harap isi semua kolom',
         variant: 'destructive',
       });
       return;
@@ -54,14 +54,14 @@ export const AddMeasurementDialog = ({ childId, onMeasurementAdded }: AddMeasure
 
     if (error) {
       toast({
-        title: 'Error',
+        title: 'Kesalahan',
         description: error.message,
         variant: 'destructive',
       });
     } else {
       toast({
-        title: 'Success!',
-        description: 'Measurement added successfully',
+        title: 'Berhasil!',
+        description: 'Pengukuran berhasil ditambahkan',
       });
       setHeight('');
       setWeight('');
@@ -77,16 +77,16 @@ export const AddMeasurementDialog = ({ childId, onMeasurementAdded }: AddMeasure
       <DialogTrigger asChild>
         <Button className="shadow-soft">
           <Plus className="w-4 h-4 mr-2" />
-          Add Measurement
+          Tambah Pengukuran
         </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Add Growth Measurement</DialogTitle>
+          <DialogTitle>Tambah Pengukuran Pertumbuhan</DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">
-            <Label htmlFor="date">Date</Label>
+            <Label htmlFor="date">Tanggal</Label>
             <Input
               id="date"
               type="date"
@@ -97,26 +97,26 @@ export const AddMeasurementDialog = ({ childId, onMeasurementAdded }: AddMeasure
             />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="height">Height (cm)</Label>
+            <Label htmlFor="height">Tinggi Badan (cm)</Label>
             <Input
               id="height"
               type="number"
               step="0.1"
               value={height}
               onChange={(e) => setHeight(e.target.value)}
-              placeholder="e.g., 75.5"
+              placeholder="cth: 75.5"
               required
             />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="weight">Weight (kg)</Label>
+            <Label htmlFor="weight">Berat Badan (kg)</Label>
             <Input
               id="weight"
               type="number"
               step="0.1"
               value={weight}
               onChange={(e) => setWeight(e.target.value)}
-              placeholder="e.g., 9.5"
+              placeholder="cth: 9.5"
               required
             />
           </div>
@@ -128,7 +128,7 @@ export const AddMeasurementDialog = ({ childId, onMeasurementAdded }: AddMeasure
             </div>
           )}
           <Button type="submit" className="w-full" disabled={loading}>
-            {loading ? 'Adding...' : 'Add Measurement'}
+            {loading ? 'Menambahkan...' : 'Tambah Pengukuran'}
           </Button>
         </form>
       </DialogContent>

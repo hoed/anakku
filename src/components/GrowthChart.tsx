@@ -76,7 +76,7 @@ export const GrowthChart = ({ childId }: GrowthChartProps) => {
                 <div className="p-2 bg-primary/10 rounded-lg">
                   <Ruler className="w-4 h-4 text-primary" />
                 </div>
-                <span className="text-sm text-muted-foreground">Height</span>
+                <span className="text-sm text-muted-foreground">Tinggi</span>
               </div>
               <p className="text-2xl font-bold">{latestMeasurement.height_cm} cm</p>
             </CardContent>
@@ -88,7 +88,7 @@ export const GrowthChart = ({ childId }: GrowthChartProps) => {
                 <div className="p-2 bg-secondary/20 rounded-lg">
                   <Weight className="w-4 h-4 text-secondary-foreground" />
                 </div>
-                <span className="text-sm text-muted-foreground">Weight</span>
+                <span className="text-sm text-muted-foreground">Berat</span>
               </div>
               <p className="text-2xl font-bold">{latestMeasurement.weight_kg} kg</p>
             </CardContent>
@@ -110,12 +110,12 @@ export const GrowthChart = ({ childId }: GrowthChartProps) => {
 
       <Card className="shadow-card">
         <CardHeader>
-          <CardTitle>Growth Trends</CardTitle>
+          <CardTitle>Tren Pertumbuhan</CardTitle>
         </CardHeader>
         <CardContent>
           {chartData.length === 0 ? (
             <div className="h-64 flex items-center justify-center text-muted-foreground">
-              No measurements yet. Add your first measurement to see the chart!
+              Belum ada pengukuran. Tambahkan pengukuran pertama untuk melihat grafik!
             </div>
           ) : (
             <ResponsiveContainer width="100%" height={300}>
@@ -136,7 +136,7 @@ export const GrowthChart = ({ childId }: GrowthChartProps) => {
                   dataKey="height"
                   stroke="hsl(var(--primary))"
                   strokeWidth={2}
-                  name="Height (cm)"
+                  name="Tinggi (cm)"
                   dot={{ fill: 'hsl(var(--primary))' }}
                 />
                 <Line
@@ -144,7 +144,7 @@ export const GrowthChart = ({ childId }: GrowthChartProps) => {
                   dataKey="weight"
                   stroke="hsl(var(--secondary))"
                   strokeWidth={2}
-                  name="Weight (kg)"
+                  name="Berat (kg)"
                   dot={{ fill: 'hsl(var(--secondary))' }}
                 />
               </LineChart>

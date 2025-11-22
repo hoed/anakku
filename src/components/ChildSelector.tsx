@@ -67,8 +67,8 @@ export const ChildSelector = ({ selectedChildId, onChildSelect }: ChildSelectorP
     
     if (!userData.user) {
       toast({
-        title: 'Error',
-        description: 'You must be logged in',
+        title: 'Kesalahan',
+        description: 'Anda harus login terlebih dahulu',
         variant: 'destructive',
       });
       setLoading(false);
@@ -88,14 +88,14 @@ export const ChildSelector = ({ selectedChildId, onChildSelect }: ChildSelectorP
 
     if (error) {
       toast({
-        title: 'Error',
+        title: 'Kesalahan',
         description: error.message,
         variant: 'destructive',
       });
     } else {
       toast({
-        title: 'Success!',
-        description: `${newChildName} has been added`,
+        title: 'Berhasil!',
+        description: `${newChildName} berhasil ditambahkan`,
       });
       setNewChildName('');
       setNewChildDob('');
@@ -119,7 +119,7 @@ export const ChildSelector = ({ selectedChildId, onChildSelect }: ChildSelectorP
         }}
       >
         <SelectTrigger className="w-[200px]">
-          <SelectValue placeholder="Select a child" />
+          <SelectValue placeholder="Pilih anak" />
         </SelectTrigger>
         <SelectContent>
           {children.map((child) => (
@@ -140,22 +140,22 @@ export const ChildSelector = ({ selectedChildId, onChildSelect }: ChildSelectorP
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2">
               <Baby className="w-5 h-5 text-primary" />
-              Add New Child
+              Tambah Anak Baru
             </DialogTitle>
           </DialogHeader>
           <form onSubmit={handleAddChild} className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="name">Name</Label>
+              <Label htmlFor="name">Nama</Label>
               <Input
                 id="name"
                 value={newChildName}
                 onChange={(e) => setNewChildName(e.target.value)}
-                placeholder="Child's name"
+                placeholder="Nama anak"
                 required
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="dob">Date of Birth</Label>
+              <Label htmlFor="dob">Tanggal Lahir</Label>
               <Input
                 id="dob"
                 type="date"
@@ -166,20 +166,20 @@ export const ChildSelector = ({ selectedChildId, onChildSelect }: ChildSelectorP
               />
             </div>
             <div className="space-y-2">
-              <Label>Gender</Label>
+              <Label>Jenis Kelamin</Label>
               <RadioGroup value={newChildGender} onValueChange={setNewChildGender}>
                 <div className="flex items-center space-x-2">
                   <RadioGroupItem value="male" id="male" />
-                  <Label htmlFor="male">Boy</Label>
+                  <Label htmlFor="male">Laki-laki</Label>
                 </div>
                 <div className="flex items-center space-x-2">
                   <RadioGroupItem value="female" id="female" />
-                  <Label htmlFor="female">Girl</Label>
+                  <Label htmlFor="female">Perempuan</Label>
                 </div>
               </RadioGroup>
             </div>
             <Button type="submit" className="w-full" disabled={loading}>
-              {loading ? 'Adding...' : 'Add Child'}
+              {loading ? 'Menambahkan...' : 'Tambah Anak'}
             </Button>
           </form>
         </DialogContent>

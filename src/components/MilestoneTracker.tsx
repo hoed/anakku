@@ -31,12 +31,12 @@ const categoryColors: Record<string, string> = {
 };
 
 const categoryNames: Record<string, string> = {
-  motor_gross: 'Gross Motor',
-  motor_fine: 'Fine Motor',
-  language: 'Language',
-  cognitive: 'Cognitive',
-  social: 'Social',
-  emotional: 'Emotional',
+  motor_gross: 'Motorik Kasar',
+  motor_fine: 'Motorik Halus',
+  language: 'Bahasa',
+  cognitive: 'Kognitif',
+  social: 'Sosial',
+  emotional: 'Emosional',
 };
 
 export const MilestoneTracker = ({ childId }: MilestoneTrackerProps) => {
@@ -75,7 +75,7 @@ export const MilestoneTracker = ({ childId }: MilestoneTrackerProps) => {
 
     if (error) {
       toast({
-        title: 'Error',
+        title: 'Kesalahan',
         description: error.message,
         variant: 'destructive',
       });
@@ -83,8 +83,8 @@ export const MilestoneTracker = ({ childId }: MilestoneTrackerProps) => {
       fetchMilestones();
       if (!currentStatus) {
         toast({
-          title: '🎉 Milestone achieved!',
-          description: 'Amazing progress!',
+          title: '🎉 Pencapaian tercapai!',
+          description: 'Perkembangan yang luar biasa!',
         });
       }
     }
@@ -92,11 +92,11 @@ export const MilestoneTracker = ({ childId }: MilestoneTrackerProps) => {
 
   const addSampleMilestones = async () => {
     const sampleMilestones = [
-      { category: 'motor_gross', title: 'Sits without support', age_range_months: '6-8' },
-      { category: 'motor_fine', title: 'Grasps small objects', age_range_months: '6-9' },
-      { category: 'language', title: 'Says first words', age_range_months: '10-14' },
-      { category: 'cognitive', title: 'Understands simple instructions', age_range_months: '12-18' },
-      { category: 'social', title: 'Shows affection to familiar people', age_range_months: '6-12' },
+      { category: 'motor_gross', title: 'Duduk tanpa bantuan', age_range_months: '6-8' },
+      { category: 'motor_fine', title: 'Menggenggam benda kecil', age_range_months: '6-9' },
+      { category: 'language', title: 'Mengucapkan kata pertama', age_range_months: '10-14' },
+      { category: 'cognitive', title: 'Memahami instruksi sederhana', age_range_months: '12-18' },
+      { category: 'social', title: 'Menunjukkan kasih sayang pada orang yang dikenal', age_range_months: '6-12' },
     ];
 
     const { data: userData } = await supabase.auth.getUser();
@@ -112,15 +112,15 @@ export const MilestoneTracker = ({ childId }: MilestoneTrackerProps) => {
 
     if (error) {
       toast({
-        title: 'Error',
+        title: 'Kesalahan',
         description: error.message,
         variant: 'destructive',
       });
     } else {
       fetchMilestones();
       toast({
-        title: 'Sample milestones added!',
-        description: 'Start tracking your child\'s development',
+        title: 'Contoh pencapaian berhasil ditambahkan!',
+        description: 'Mulai lacak perkembangan anak Anda',
       });
     }
   };
@@ -153,12 +153,12 @@ export const MilestoneTracker = ({ childId }: MilestoneTrackerProps) => {
         <div className="flex items-center justify-between">
           <CardTitle className="flex items-center gap-2">
             <Sparkles className="w-5 h-5 text-primary" />
-            Development Milestones
+            Pencapaian Perkembangan
           </CardTitle>
           {milestones.length === 0 && (
             <Button onClick={addSampleMilestones} size="sm" variant="outline">
               <Plus className="w-4 h-4 mr-2" />
-              Add Sample Milestones
+              Tambah Contoh
             </Button>
           )}
         </div>
@@ -167,7 +167,7 @@ export const MilestoneTracker = ({ childId }: MilestoneTrackerProps) => {
         {milestones.length === 0 ? (
           <div className="text-center py-12 text-muted-foreground">
             <Sparkles className="w-12 h-12 mx-auto mb-4 opacity-50" />
-            <p>No milestones yet. Add some to start tracking!</p>
+            <p>Belum ada pencapaian. Tambahkan untuk mulai melacak!</p>
           </div>
         ) : (
           Object.entries(groupedMilestones).map(([category, items]) => (
@@ -194,7 +194,7 @@ export const MilestoneTracker = ({ childId }: MilestoneTrackerProps) => {
                       </p>
                       {milestone.age_range_months && (
                         <p className="text-sm text-muted-foreground">
-                          Typical age: {milestone.age_range_months} months
+                          Usia umum: {milestone.age_range_months} bulan
                         </p>
                       )}
                     </div>

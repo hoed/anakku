@@ -47,6 +47,53 @@ export type Database = {
         }
         Relationships: []
       }
+      daily_activities: {
+        Row: {
+          activity_date: string
+          activity_type: string
+          child_id: string
+          created_at: string
+          id: string
+          mood_rating: number | null
+          notes: string | null
+          unit: string | null
+          updated_at: string
+          value: number | null
+        }
+        Insert: {
+          activity_date?: string
+          activity_type: string
+          child_id: string
+          created_at?: string
+          id?: string
+          mood_rating?: number | null
+          notes?: string | null
+          unit?: string | null
+          updated_at?: string
+          value?: number | null
+        }
+        Update: {
+          activity_date?: string
+          activity_type?: string
+          child_id?: string
+          created_at?: string
+          id?: string
+          mood_rating?: number | null
+          notes?: string | null
+          unit?: string | null
+          updated_at?: string
+          value?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "daily_activities_child_id_fkey"
+            columns: ["child_id"]
+            isOneToOne: false
+            referencedRelation: "children"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       growth_measurements: {
         Row: {
           bmi: number | null

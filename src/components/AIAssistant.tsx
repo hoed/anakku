@@ -27,8 +27,8 @@ export const AIAssistant = ({ childData }: AIAssistantProps) => {
   const getGrowthAnalysis = async () => {
     if (!childData.latestMeasurement) {
       toast({
-        title: 'No data available',
-        description: 'Please add growth measurements first',
+        title: 'Data tidak tersedia',
+        description: 'Harap tambahkan pengukuran pertumbuhan terlebih dahulu',
         variant: 'destructive',
       });
       return;
@@ -55,8 +55,8 @@ export const AIAssistant = ({ childData }: AIAssistantProps) => {
       setAdvice(data.advice);
     } catch (error: any) {
       toast({
-        title: 'Error',
-        description: error.message || 'Failed to get AI analysis',
+        title: 'Kesalahan',
+        description: error.message || 'Gagal mendapatkan analisis AI',
         variant: 'destructive',
       });
     } finally {
@@ -71,7 +71,7 @@ export const AIAssistant = ({ childData }: AIAssistantProps) => {
           <div className="p-2 bg-white/20 rounded-lg">
             <Sparkles className="w-5 h-5" />
           </div>
-          AI Growth Assistant
+          Asisten Pertumbuhan AI
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
@@ -83,12 +83,12 @@ export const AIAssistant = ({ childData }: AIAssistantProps) => {
           {loading ? (
             <>
               <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-              Analyzing...
+              Menganalisis...
             </>
           ) : (
             <>
               <Sparkles className="w-4 h-4 mr-2" />
-              Get AI Growth Analysis
+              Dapatkan Analisis Pertumbuhan AI
             </>
           )}
         </Button>
