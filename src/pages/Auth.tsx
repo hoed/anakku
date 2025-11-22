@@ -200,8 +200,8 @@ const Auth = () => {
             </TabsContent>
           </Tabs>
         </Card>
+        <Footer />
       </motion.div>
-      <Footer />
     </div>
   );
 };
