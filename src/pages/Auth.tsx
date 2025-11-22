@@ -107,7 +107,7 @@ const Auth = () => {
           >
             <Baby className="w-12 h-12 text-primary" />
           </motion.div>
-          <h1 className="text-4xl font-bold text-white mb-2">KidGrowth+</h1>
+          <h1 className="text-4xl font-bold text-white mb-2">Anakku+</h1>
           <p className="text-white/90">Teman Tumbuh Kembang Anak</p>
         </div>
 
