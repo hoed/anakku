@@ -10,6 +10,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Baby, Mail, Lock } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Heart } from 'lucide-react';
+import { Footer } from '@/components/Footer';
 
 const Auth = () => {
   const [email, setEmail] = useState('');
@@ -200,6 +201,7 @@ const Auth = () => {
           </Tabs>
         </Card>
       </motion.div>
+      <Footer />
     </div>
   );
 };
