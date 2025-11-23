@@ -135,6 +135,47 @@ export type Database = {
           },
         ]
       }
+      immunization_reminders: {
+        Row: {
+          child_id: string
+          created_at: string
+          id: string
+          notes: string | null
+          reminder_sent: boolean | null
+          scheduled_date: string
+          updated_at: string
+          vaccine_name: string
+        }
+        Insert: {
+          child_id: string
+          created_at?: string
+          id?: string
+          notes?: string | null
+          reminder_sent?: boolean | null
+          scheduled_date: string
+          updated_at?: string
+          vaccine_name: string
+        }
+        Update: {
+          child_id?: string
+          created_at?: string
+          id?: string
+          notes?: string | null
+          reminder_sent?: boolean | null
+          scheduled_date?: string
+          updated_at?: string
+          vaccine_name?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "immunization_reminders_child_id_fkey"
+            columns: ["child_id"]
+            isOneToOne: false
+            referencedRelation: "children"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       milestones: {
         Row: {
           achieved_date: string | null

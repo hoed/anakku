@@ -11,6 +11,7 @@ import { AIAssistant } from '@/components/AIAssistant';
 import { AddMeasurementDialog } from '@/components/AddMeasurementDialog';
 import { DailyActivityLog } from '@/components/DailyActivityLog';
 import { Footer } from '@/components/Footer';
+import { GeminiChatbot } from '@/components/GeminiChatbot';
 import { motion } from 'framer-motion';
 
 interface Child {
@@ -111,8 +112,13 @@ const Dashboard = () => {
                 selectedChildId={selectedChild?.id || null}
                 onChildSelect={handleChildSelect}
               />
-              <Button onClick={handleSignOut} variant="outline" size="icon" className="bg-white">
+              <Button 
+                onClick={handleSignOut} 
+                variant="outline" 
+                className="bg-white hover:bg-white/90 flex items-center gap-2"
+              >
                 <LogOut className="w-4 h-4" />
+                <span className="hidden sm:inline">Keluar</span>
               </Button>
             </div>
           </div>
@@ -181,6 +187,7 @@ const Dashboard = () => {
         )}
       </main>
       <Footer />
+      <GeminiChatbot />
     </div>
   );
 };

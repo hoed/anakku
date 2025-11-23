@@ -23,34 +23,34 @@ serve(async (req) => {
 
     switch (type) {
       case 'growth_analysis':
-        systemPrompt = `You are a pediatric growth specialist AI assistant. Analyze child growth data using WHO standards and provide clear, actionable insights for parents. Focus on being supportive and informative, not alarming.`;
-        userPrompt = `Analyze this child's growth data:
-- Name: ${data.name}
-- Age: ${data.ageMonths} months
-- Gender: ${data.gender}
-- Height: ${data.height} cm
-- Weight: ${data.weight} kg
+        systemPrompt = `Anda adalah asisten AI spesialis pertumbuhan anak. Analisis data pertumbuhan anak menggunakan standar WHO dan berikan wawasan yang jelas dan dapat ditindaklanjuti untuk orang tua dalam bahasa Indonesia. Fokus pada memberikan dukungan dan informasi, bukan mengkhawatirkan.`;
+        userPrompt = `Analisis data pertumbuhan anak ini:
+- Nama: ${data.name}
+- Umur: ${data.ageMonths} bulan
+- Jenis Kelamin: ${data.gender}
+- Tinggi: ${data.height} cm
+- Berat: ${data.weight} kg
 - BMI: ${data.bmi}
 
-Provide a brief analysis (max 3 paragraphs) covering:
-1. Overall growth assessment relative to WHO standards
-2. Any notable trends or observations
-3. Practical recommendations for parents`;
+Berikan analisis singkat (maksimal 3 paragraf) yang mencakup:
+1. Penilaian pertumbuhan keseluruhan relatif terhadap standar WHO
+2. Tren atau pengamatan yang menonjol
+3. Rekomendasi praktis untuk orang tua`;
         break;
 
       case 'milestone_evaluation':
-        systemPrompt = `You are a child development specialist AI. Evaluate milestone achievements and provide supportive, age-appropriate guidance to parents.`;
-        userPrompt = `Evaluate these milestones for a ${data.ageMonths}-month-old child:
-${data.milestones.map((m: any) => `- ${m.title}: ${m.is_achieved ? 'Achieved' : 'Not yet'}`).join('\n')}
+        systemPrompt = `Anda adalah AI spesialis perkembangan anak. Evaluasi pencapaian milestone dan berikan panduan yang mendukung dan sesuai usia kepada orang tua dalam bahasa Indonesia.`;
+        userPrompt = `Evaluasi milestone ini untuk anak berusia ${data.ageMonths} bulan:
+${data.milestones.map((m: any) => `- ${m.title}: ${m.is_achieved ? 'Tercapai' : 'Belum tercapai'}`).join('\n')}
 
-Provide a brief evaluation (max 3 paragraphs) covering:
-1. Development assessment for this age
-2. Notable achievements
-3. Gentle suggestions for supporting continued development`;
+Berikan evaluasi singkat (maksimal 3 paragraf) yang mencakup:
+1. Penilaian perkembangan untuk usia ini
+2. Pencapaian yang menonjol
+3. Saran lembut untuk mendukung perkembangan berkelanjutan`;
         break;
 
       case 'general_advice':
-        systemPrompt = `You are a friendly parenting AI assistant with expertise in child development and nutrition for children aged 3 months to 10 years. Provide practical, evidence-based advice.`;
+        systemPrompt = `Anda adalah asisten AI ramah dengan keahlian dalam perkembangan anak dan nutrisi untuk anak usia 3 bulan hingga 10 tahun. Berikan saran praktis berbasis bukti dalam bahasa Indonesia.`;
         userPrompt = data.question;
         break;
 
@@ -76,13 +76,13 @@ Provide a brief evaluation (max 3 paragraphs) covering:
     if (!response.ok) {
       if (response.status === 429) {
         return new Response(
-          JSON.stringify({ error: 'Rate limit exceeded. Please try again later.' }),
+          JSON.stringify({ error: 'Batas penggunaan terlampaui. Silakan coba lagi nanti.' }),
           { status: 429, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
         );
       }
       if (response.status === 402) {
         return new Response(
-          JSON.stringify({ error: 'AI service requires payment. Please contact support.' }),
+          JSON.stringify({ error: 'Layanan AI memerlukan pembayaran. Silakan hubungi dukungan.' }),
           { status: 402, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
         );
       }
@@ -92,7 +92,7 @@ Provide a brief evaluation (max 3 paragraphs) covering:
     }
 
     const aiResponse = await response.json();
-    const advice = aiResponse.choices?.[0]?.message?.content || 'Unable to generate advice at this time.';
+    const advice = aiResponse.choices?.[0]?.message?.content || 'Tidak dapat menghasilkan saran saat ini.';
 
     return new Response(
       JSON.stringify({ advice }),

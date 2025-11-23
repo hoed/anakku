@@ -2,3 +2,6 @@ project_id = "lbqvsvlckglqjdpoobpo"
 
 [functions.growth-assistant]
 verify_jwt = true
+
+[functions.chat-gemini]
+verify_jwt = false
