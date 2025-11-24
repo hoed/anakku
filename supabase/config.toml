@@ -5,3 +5,9 @@ verify_jwt = true
 
 [functions.chat-gemini]
 verify_jwt = false
+
+[functions.generate-share-link]
+verify_jwt = true
+
+[functions.analyze-disease]
+verify_jwt = true

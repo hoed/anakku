@@ -226,6 +226,62 @@ export type Database = {
           },
         ]
       }
+      share_links: {
+        Row: {
+          access_code: string
+          access_count: number
+          child_id: string
+          created_at: string
+          created_by: string
+          doctor_email: string | null
+          doctor_name: string | null
+          expires_at: string
+          id: string
+          is_active: boolean
+          last_accessed_at: string | null
+          share_token: string
+          updated_at: string
+        }
+        Insert: {
+          access_code: string
+          access_count?: number
+          child_id: string
+          created_at?: string
+          created_by: string
+          doctor_email?: string | null
+          doctor_name?: string | null
+          expires_at: string
+          id?: string
+          is_active?: boolean
+          last_accessed_at?: string | null
+          share_token: string
+          updated_at?: string
+        }
+        Update: {
+          access_code?: string
+          access_count?: number
+          child_id?: string
+          created_at?: string
+          created_by?: string
+          doctor_email?: string | null
+          doctor_name?: string | null
+          expires_at?: string
+          id?: string
+          is_active?: boolean
+          last_accessed_at?: string | null
+          share_token?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "share_links_child_id_fkey"
+            columns: ["child_id"]
+            isOneToOne: false
+            referencedRelation: "children"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never

@@ -12,7 +12,11 @@ import { AddMeasurementDialog } from '@/components/AddMeasurementDialog';
 import { DailyActivityLog } from '@/components/DailyActivityLog';
 import { Footer } from '@/components/Footer';
 import { GeminiChatbot } from '@/components/GeminiChatbot';
+import { DiseaseDetection } from '@/components/DiseaseDetection';
+import { ShareLinkManager } from '@/components/ShareLinkManager';
 import { motion } from 'framer-motion';
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { Menu } from 'lucide-react';
 
 interface Child {
   id: string;
@@ -107,7 +111,9 @@ const Dashboard = () => {
               </div>
               <h1 className="text-2xl font-bold text-white">Anakku+</h1>
             </div>
-            <div className="flex items-center gap-4">
+            
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center gap-4">
               <ChildSelector
                 selectedChildId={selectedChild?.id || null}
                 onChildSelect={handleChildSelect}
@@ -118,9 +124,34 @@ const Dashboard = () => {
                 className="bg-white hover:bg-white/90 flex items-center gap-2"
               >
                 <LogOut className="w-4 h-4" />
-                <span className="hidden sm:inline">Keluar</span>
+                <span>Keluar</span>
               </Button>
             </div>
+
+            {/* Mobile Navigation */}
+            <Sheet>
+              <SheetTrigger asChild className="md:hidden">
+                <Button variant="ghost" size="icon" className="text-white">
+                  <Menu className="w-6 h-6" />
+                </Button>
+              </SheetTrigger>
+              <SheetContent>
+                <div className="flex flex-col gap-4 mt-8">
+                  <ChildSelector
+                    selectedChildId={selectedChild?.id || null}
+                    onChildSelect={handleChildSelect}
+                  />
+                  <Button 
+                    onClick={handleSignOut} 
+                    variant="outline" 
+                    className="w-full flex items-center gap-2"
+                  >
+                    <LogOut className="w-4 h-4" />
+                    Keluar
+                  </Button>
+                </div>
+              </SheetContent>
+            </Sheet>
           </div>
         </div>
       </motion.header>
@@ -168,6 +199,12 @@ const Dashboard = () => {
 
             {/* Milestones */}
             <MilestoneTracker childId={selectedChild.id} />
+
+            {/* Disease Detection */}
+            <DiseaseDetection />
+
+            {/* Share with Doctor */}
+            <ShareLinkManager childId={selectedChild.id} />
 
             {/* Daily Activity Log */}
             <DailyActivityLog childId={selectedChild.id} />
