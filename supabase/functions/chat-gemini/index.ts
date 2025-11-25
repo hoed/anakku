@@ -11,10 +11,14 @@ serve(async (req) => {
   }
 
   try {
+    console.log("Chat-gemini function called");
     const { message } = await req.json();
+    console.log("Message received:", message);
+    
     const GEMINI_API_KEY = Deno.env.get("GEMINI_API_KEY");
 
     if (!GEMINI_API_KEY) {
+      console.error("GEMINI_API_KEY is not configured");
       throw new Error("GEMINI_API_KEY tidak dikonfigurasi");
     }
 

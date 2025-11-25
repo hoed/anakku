@@ -7,7 +7,6 @@ import Dashboard from "./pages/Dashboard";
 import Auth from "./pages/Auth";
 import SharedView from "./pages/SharedView";
 import NotFound from "./pages/NotFound";
-import { Analytics } from "@vercel/analytics/react"
 
 const queryClient = new QueryClient();
 

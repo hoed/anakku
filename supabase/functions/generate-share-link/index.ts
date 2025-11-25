@@ -12,6 +12,8 @@ serve(async (req) => {
   }
 
   try {
+    console.log("Generate-share-link function called");
+    
     const supabaseClient = createClient(
       Deno.env.get('SUPABASE_URL') ?? '',
       Deno.env.get('SUPABASE_ANON_KEY') ?? '',
@@ -24,13 +26,16 @@ serve(async (req) => {
 
     const { data: { user } } = await supabaseClient.auth.getUser();
     if (!user) {
+      console.error("Unauthorized: No user found");
       return new Response(JSON.stringify({ error: 'Unauthorized' }), {
         status: 401,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       });
     }
 
+    console.log("User authenticated:", user.id);
     const { childId, doctorName, doctorEmail, expiresInDays } = await req.json();
+    console.log("Request data:", { childId, doctorName, doctorEmail, expiresInDays });
 
     // Generate secure token and access code
     const shareToken = crypto.randomUUID();
