@@ -83,7 +83,13 @@ const Dashboard = () => {
   };
 
   const handleSignOut = async () => {
-    await supabase.auth.signOut();
+    try {
+      await supabase.auth.signOut({ scope: 'local' });
+    } catch (error) {
+      console.log('Sign out error (session may already be invalid):', error);
+    }
+    // Always clear state and redirect, even if signOut fails
+    setSession(null);
     navigate('/auth');
   };
 
