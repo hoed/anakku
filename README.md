@@ -92,19 +92,17 @@ Anakku+ menggunakan antarmuka yang bersih, modern, dan ramah dengan:
 
 ---
 
-## **Struktur Proyek**
-
-/lib atau /src
-│── components/
-│── screens/
-│── services/
+lib/ atau src/
+├── components/
+├── screens/
+├── services/
 │   ├── ai/
 │   ├── auth/
-│   ├── database/
-│── utils/
-│── models/
-│── assets/
-│── README.md
+│   └── database/
+├── utils/
+├── models/
+├── assets/
+└── README.md
 
 ---
 
