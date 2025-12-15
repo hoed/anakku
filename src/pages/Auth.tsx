@@ -21,11 +21,15 @@ const Auth = () => {
   const { toast } = useToast();
 
   useEffect(() => {
+    console.log('=== AUTH PAGE MOUNTED ===');
+    
     // Set up auth state listener FIRST
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       (event, session) => {
+        console.log('Auth state change event:', event, 'session:', !!session);
         // Only redirect on SIGNED_IN event, not on initial load
         if (event === 'SIGNED_IN' && session) {
+          console.log('SIGNED_IN event, redirecting to /');
           navigate('/');
         }
       }
@@ -33,7 +37,9 @@ const Auth = () => {
 
     // Then check for existing session
     supabase.auth.getSession().then(({ data: { session } }) => {
+      console.log('Auth page getSession result:', !!session);
       if (session) {
+        console.log('Session found on Auth page, redirecting to /');
         navigate('/');
       }
     });

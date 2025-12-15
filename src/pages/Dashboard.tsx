@@ -85,16 +85,23 @@ const Dashboard = () => {
   };
 
   const handleSignOut = async () => {
+    console.log('=== LOGOUT STARTED ===');
     try {
       // Clear local state first
       setSession(null);
       setSelectedChild(null);
-      // Sign out from Supabase
-      await supabase.auth.signOut();
+      console.log('Local state cleared, calling signOut...');
+      // Sign out from Supabase and wait for it to complete
+      const { error } = await supabase.auth.signOut();
+      console.log('SignOut completed, error:', error);
     } catch (error) {
-      console.log('Sign out error:', error);
+      console.log('Sign out exception:', error);
     }
-    // Always redirect
+    // Check session after signout
+    const { data } = await supabase.auth.getSession();
+    console.log('Session after signOut:', data.session);
+    // Navigate after everything is done
+    console.log('Navigating to /auth...');
     navigate('/auth');
   };
 
