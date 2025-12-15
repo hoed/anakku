@@ -124,7 +124,7 @@ Prompt Analisis Pertumbuhan
 
 “Buatkan rencana makan mingguan untuk anak usia ___ dengan preferensi ___ dan batasan ___. Sertakan ringkasan kalori dan nutrisi.”
 
-## **Privasi & Keamanan Data
+## **Privasi & Keamanan Data**
 
 Tidak ada data yang dibagikan ke pihak ketiga
 Data anak dienkripsi dan disimpan secara aman
