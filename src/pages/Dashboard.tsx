@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
 import { Session } from '@supabase/supabase-js';
 import { Button } from '@/components/ui/button';
-import { LogOut, Baby } from 'lucide-react';
+import { LogOut, Baby, Menu } from 'lucide-react';
 import { ChildSelector } from '@/components/ChildSelector';
 import { GrowthChart } from '@/components/GrowthChart';
 import { MilestoneTracker } from '@/components/MilestoneTracker';
@@ -14,9 +14,9 @@ import { Footer } from '@/components/Footer';
 import { GeminiChatbot } from '@/components/GeminiChatbot';
 import { DiseaseDetection } from '@/components/DiseaseDetection';
 import { ShareLinkManager } from '@/components/ShareLinkManager';
+import { GoogleCalendar } from '@/components/GoogleCalendar';
 import { motion } from 'framer-motion';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { Menu } from 'lucide-react';
 
 interface Child {
   id: string;
@@ -220,6 +220,9 @@ const Dashboard = () => {
 
             {/* Disease Detection */}
             <DiseaseDetection />
+
+            {/* Google Calendar */}
+            <GoogleCalendar childId={selectedChild.id} childName={selectedChild.name} />
 
             {/* Share with Doctor */}
             <ShareLinkManager childId={selectedChild.id} />
