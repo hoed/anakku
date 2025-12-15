@@ -90,16 +90,15 @@ Anakku+ menggunakan antarmuka yang bersih, modern, dan ramah dengan:
 * **Database:** Firestore / Realtime Database
 * **Grafik:** Chart.js / Flutter Charts
 
----
-
+--- 
 ## **Project Structure (Example)**
-/lib atau /src
+/lib or /src
 │── components/
 │── screens/
 │── services/
-│ ├── ai/
-│ ├── auth/
-│ ├── database/
+│   ├── ai/
+│   ├── auth/
+│   ├── database/
 │── utils/
 │── models/
 │── assets/
