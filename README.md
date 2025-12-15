@@ -1,101 +1,103 @@
-# **Anakku+ — AI-Powered Child Growth & Development Tracker**
+```markdown
+# **Anakku+ — Pelacak Pertumbuhan & Perkembangan Anak Berbasis AI**
 
-KidGrowth+ is a modern mobile application designed to help parents track and support their child’s growth and development from **3 months to 10 years old**.
-Equipped with **AI-powered insights**, dynamic growth charts, milestone tracking, nutrition planning, immunization reminders, and many more smart features.
-
----
-
-## 🚀 **Features**
-
-### ** 1. Physical Growth Tracking**
-
-Track the child’s height, weight, and BMI with automatic plotting on WHO-standard growth charts.
-
-### ** 2. Cognitive Development**
-
-Monitor developmental progress such as language skills, memory, problem-solving, and age-based learning abilities.
-
-### ** 3. Social & Emotional Stages**
-
-Track emotional responses, social interaction levels, confidence, self-awareness, and communication development.
-
-### ** 4. Nutrition & Immunization**
-
-* AI-generated weekly meal plans
-* Calorie and nutrient recommendations
-* Immunization schedule (WHO & Indonesia standards)
-* Automatic reminders
-
-### ** 5. Daily Habits & Activities**
-
-Track sleep, feeding, screen time, water intake, mood, and daily routines.
-
-### ** 6. Risk Alerts & AI Recommendations**
-
-AI analyzes growth data, milestones, habits, and nutrition to:
-
-* Detect early warning signs
-* Suggest relevant actions
-* Offer personalized parenting tips
-* Answer questions via AI chat
+Anakku+ adalah aplikasi mobile modern yang dirancang untuk membantu orang tua memantau dan mendukung pertumbuhan serta perkembangan anak sejak usia **3 bulan hingga 10 tahun**.  
+Dilengkapi dengan **insight berbasis AI**, grafik pertumbuhan dinamis, pelacakan milestone, perencanaan nutrisi, pengingat imunisasi, dan berbagai fitur pintar lainnya.
 
 ---
 
-##  **AI-Powered Modules**
+## 🚀 **Fitur**
 
-### **AI Growth Assistant**
+### **1. Pelacakan Pertumbuhan Fisik**
 
-Provides dynamic insights and guidance based on your child's growth data.
+Memantau tinggi badan, berat badan, dan BMI anak dengan pemetaan otomatis pada grafik pertumbuhan standar WHO.
 
-### **AI Milestone Analysis**
+### **2. Perkembangan Kognitif**
 
-Evaluates progress across age-appropriate milestones and identifies potential delays.
+Memantau perkembangan seperti kemampuan bahasa, daya ingat, pemecahan masalah, dan kemampuan belajar sesuai usia.
 
-### **AI Nutrition Planner**
+### **3. Tahap Sosial & Emosional**
 
-Creates custom weekly meal plans considering the child's age, allergies, and preferences.
+Melacak respons emosional, tingkat interaksi sosial, kepercayaan diri, kesadaran diri, serta perkembangan komunikasi.
 
----
+### **4. Nutrisi & Imunisasi**
 
-##  **Additional Key Features**
+* Rencana makan mingguan yang dihasilkan AI  
+* Rekomendasi kalori dan nutrisi  
+* Jadwal imunisasi (standar WHO & Indonesia)  
+* Pengingat otomatis  
 
-* Milestone checklist with photo/video attachments
-* Multi-child profiles
-* Parenting articles & expert videos
-* Cloud backup (Firebase recommended)
-* Push notifications (reminders & alerts)
-* Light/Dark mode
-* Secure login (Email, Google, Apple)
+### **5. Kebiasaan & Aktivitas Harian**
 
----
+Memantau pola tidur, makan, waktu layar (screen time), asupan air, suasana hati, dan rutinitas harian.
 
-##  **Design & UI**
+### **6. Peringatan Risiko & Rekomendasi AI**
 
-KidGrowth+ uses a clean, modern, and friendly UI with:
+AI menganalisis data pertumbuhan, milestone, kebiasaan, dan nutrisi untuk:
 
-* Pastel color palette
-* Smooth micro-animations
-* Intuitive navigation
-* Accessible typography
-* Kid-friendly illustrations
+* Mendeteksi tanda peringatan dini  
+* Menyarankan tindakan yang relevan  
+* Memberikan tips pengasuhan yang dipersonalisasi  
+* Menjawab pertanyaan melalui chat AI  
 
 ---
 
-##  **Tech Stack**
+## **Modul Berbasis AI**
 
-* **Frontend:** Flutter / React Native
-* **Backend:** Firebase / Supabase
-* **AI Integration:** OpenAI / Gemini API
-* **Authentication:** Firebase Auth
-* **Database:** Firestore / Realtime DB
-* **Charts:** Chart.js / Flutter Charts
+### **Asisten Pertumbuhan AI**
+
+Memberikan insight dan panduan dinamis berdasarkan data pertumbuhan anak.
+
+### **Analisis Milestone AI**
+
+Mengevaluasi kemajuan berdasarkan milestone sesuai usia dan mengidentifikasi potensi keterlambatan.
+
+### **Perencana Nutrisi AI**
+
+Membuat rencana makan mingguan khusus dengan mempertimbangkan usia anak, alergi, dan preferensi.
 
 ---
 
-##  **Project Structure (Example)**
+## **Fitur Utama Tambahan**
+
+* Checklist milestone dengan lampiran foto/video  
+* Profil multi-anak  
+* Artikel parenting & video dari pakar  
+* Backup cloud (direkomendasikan Firebase)  
+* Push notification (pengingat & peringatan)  
+* Mode terang/gelap  
+* Login aman (Email, Google, Apple)  
+
+---
+
+## **Desain & UI**
+
+Anakku+ menggunakan antarmuka yang bersih, modern, dan ramah dengan:
+
+* Palet warna pastel  
+* Mikro-animasi yang halus  
+* Navigasi intuitif  
+* Tipografi yang mudah diakses  
+* Ilustrasi ramah anak  
+
+---
+
+## **Tech Stack**
+
+* **Frontend:** Flutter / React Native  
+* **Backend:** Firebase / Supabase  
+* **Integrasi AI:** OpenAI / Gemini API  
+* **Autentikasi:** Firebase Auth  
+* **Database:** Firestore / Realtime DB  
+* **Grafik:** Chart.js / Flutter Charts  
+
+---
+
+## **Struktur Proyek (Contoh)**
 
 ```
-/lib or /src
+
+/lib atau /src
 │── components/
 │── screens/
 │── services/
@@ -106,61 +108,63 @@ KidGrowth+ uses a clean, modern, and friendly UI with:
 │── models/
 │── assets/
 │── README.md
-```
+
+````
 
 ---
 
-##  **Installation & Setup**
+## **Instalasi & Setup**
 
 ```bash
-# Clone the repository
+# Clone repository
 git clone https://github.com/yourusername/kidgrowth-app.git
 
-# Navigate to project
+# Masuk ke direktori proyek
 cd kidgrowth-app
 
-# Install dependencies
-npm install   # or flutter pub get
+# Install dependensi
+npm install   # atau flutter pub get
 
-# Run the app
-npm start     # or flutter run
+# Jalankan aplikasi
+npm start     # atau flutter run
+````
+
+---
+
+## **Prompt AI Internal (Termasuk di Aplikasi)**
+
+### **Prompt Analisis Pertumbuhan**
+
+“Analisis data pertumbuhan anak (tinggi badan, berat badan, usia) menggunakan standar WHO dan berikan insight, potensi masalah, serta rekomendasi yang dapat ditindaklanjuti.”
+
+### **Prompt Evaluasi Milestone**
+
+“Evaluasi checklist milestone ini dan tentukan apakah perkembangan anak normal, lebih cepat, atau terlambat.”
+
+### **Prompt Nutrisi**
+
+“Buatkan rencana makan mingguan untuk anak usia ___ dengan preferensi ___ dan batasan ___. Sertakan ringkasan kalori dan nutrisi.”
+
+---
+
+## **Privasi & Keamanan Data**
+
+* Tidak ada data yang dibagikan ke pihak ketiga
+* Data anak dienkripsi dan disimpan secara aman
+* Orang tua memiliki kendali penuh atas informasi mereka
+
+---
+
+## **Kontribusi**
+
+Kontribusi sangat terbuka!
+Silakan ajukan pull request atau buka issue jika Anda ingin meningkatkan proyek ini.
+
+---
+
+## **Lisensi**
+
+Proyek ini dilisensikan di bawah **Lisensi MIT**.
+
 ```
-
----
-
-##  **Internal AI Prompts (Included in App)**
-
-### **Growth Analysis Prompt**
-
-“Analyze the child’s growth data (height, weight, age) using WHO standards and provide insights, concerns, and actionable recommendations.”
-
-### **Milestone Evaluation Prompt**
-
-“Evaluate these milestone checklists and determine whether the child is developing normally, ahead, or delayed.”
-
-### **Nutrition Prompt**
-
-“Generate a weekly meal plan for a child aged ___ with preferences ___ and restrictions ___. Include calories and nutrition summary.”
-
----
-
-##  **Privacy & Data Security**
-
-* No data is shared with third parties
-* Child data is encrypted and stored securely
-* Parents retain full control over their information
-
----
-
-##  **Contributing**
-
-Contributions are welcome!
-Please submit a pull request or open an issue if you'd like to improve the project.
-
----
-
-##  **License**
-
-This project is licensed under the **MIT License**.
-
-
+```
