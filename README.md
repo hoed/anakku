@@ -1,6 +1,10 @@
+😅 siap, maaf ya. Ini **SATU markdown bersih tanpa block ```**, jadi **langsung bisa di-copy & dipakai** (README, Notion, GitHub, dsb).
+
+---
+
 # **Anakku+ — Pelacak Pertumbuhan & Perkembangan Anak Berbasis AI**
 
-Anakku+ adalah aplikasi mobile modern yang dirancang untuk membantu orang tua memantau dan mendukung pertumbuhan serta perkembangan anak sejak usia **3 bulan hingga 10 tahun**.  
+Anakku+ adalah aplikasi mobile modern yang dirancang untuk membantu orang tua memantau dan mendukung pertumbuhan serta perkembangan anak sejak usia **3 bulan hingga 10 tahun**.
 Dilengkapi dengan **insight berbasis AI**, grafik pertumbuhan dinamis, pelacakan milestone, perencanaan nutrisi, pengingat imunisasi, dan berbagai fitur pintar lainnya.
 
 ---
@@ -21,10 +25,10 @@ Melacak respons emosional, tingkat interaksi sosial, kepercayaan diri, kesadaran
 
 ### **4. Nutrisi & Imunisasi**
 
-* Rencana makan mingguan yang dihasilkan AI  
-* Rekomendasi kalori dan nutrisi  
-* Jadwal imunisasi (standar WHO & Indonesia)  
-* Pengingat otomatis  
+* Rencana makan mingguan berbasis AI
+* Rekomendasi kalori dan nutrisi
+* Jadwal imunisasi (standar WHO & Indonesia)
+* Pengingat otomatis
 
 ### **5. Kebiasaan & Aktivitas Harian**
 
@@ -34,10 +38,10 @@ Memantau pola tidur, makan, waktu layar (screen time), asupan air, suasana hati,
 
 AI menganalisis data pertumbuhan, milestone, kebiasaan, dan nutrisi untuk:
 
-* Mendeteksi tanda peringatan dini  
-* Menyarankan tindakan yang relevan  
-* Memberikan tips pengasuhan yang dipersonalisasi  
-* Menjawab pertanyaan melalui chat AI  
+* Mendeteksi tanda peringatan dini
+* Menyarankan tindakan yang relevan
+* Memberikan tips pengasuhan yang dipersonalisasi
+* Menjawab pertanyaan melalui chat AI
 
 ---
 
@@ -59,13 +63,13 @@ Membuat rencana makan mingguan khusus dengan mempertimbangkan usia anak, alergi,
 
 ## **Fitur Utama Tambahan**
 
-* Checklist milestone dengan lampiran foto/video  
-* Profil multi-anak  
-* Artikel parenting & video dari pakar  
-* Backup cloud (direkomendasikan Firebase)  
-* Push notification (pengingat & peringatan)  
-* Mode terang/gelap  
-* Login aman (Email, Google, Apple)  
+* Checklist milestone dengan lampiran foto/video
+* Profil multi-anak
+* Artikel parenting & video dari pakar
+* Backup cloud (direkomendasikan Firebase)
+* Push notification (pengingat & peringatan)
+* Mode terang / gelap
+* Login aman (Email, Google, Apple)
 
 ---
 
@@ -73,33 +77,34 @@ Membuat rencana makan mingguan khusus dengan mempertimbangkan usia anak, alergi,
 
 Anakku+ menggunakan antarmuka yang bersih, modern, dan ramah dengan:
 
-* Palet warna pastel  
-* Mikro-animasi yang halus  
-* Navigasi intuitif  
-* Tipografi yang mudah diakses  
-* Ilustrasi ramah anak  
+* Palet warna pastel
+* Mikro-animasi yang halus
+* Navigasi intuitif
+* Tipografi yang mudah dibaca
+* Ilustrasi ramah anak
 
 ---
 
 ## **Tech Stack**
 
-* **Frontend:** Flutter / React Native  
-* **Backend:** Firebase / Supabase  
-* **Integrasi AI:** OpenAI / Gemini API  
-* **Autentikasi:** Firebase Auth  
-* **Database:** Firestore / Realtime DB  
-* **Grafik:** Chart.js / Flutter Charts  
+* **Frontend:** Flutter / React Native
+* **Backend:** Firebase / Supabase
+* **Integrasi AI:** OpenAI / Gemini API
+* **Autentikasi:** Firebase Auth
+* **Database:** Firestore / Realtime Database
+* **Grafik:** Chart.js / Flutter Charts
 
 ---
 
-## **Struktur Proyek**
+## **Struktur Proyek (Contoh)**
+
 /lib atau /src
 │── components/
 │── screens/
 │── services/
-│ ├── ai/
-│ ├── auth/
-│ ├── database/
+│   ├── ai/
+│   ├── auth/
+│   ├── database/
 │── utils/
 │── models/
 │── assets/
@@ -109,46 +114,62 @@ Anakku+ menggunakan antarmuka yang bersih, modern, dan ramah dengan:
 
 ## **Instalasi & Setup**
 
-```bash
-# Clone repository
-git clone https://github.com/yourusername/kidgrowth-app.git
+Clone repository
+`git clone https://github.com/yourusername/kidgrowth-app.git`
 
-# Masuk ke direktori proyek
-cd kidgrowth-app
+Masuk ke direktori proyek
+`cd kidgrowth-app`
 
-# Install dependensi
-npm install   # atau flutter pub get
+Install dependensi
+`npm install` atau `flutter pub get`
 
-# Jalankan aplikasi
-npm start     # atau flutter run
+Jalankan aplikasi
+`npm start` atau `flutter run`
 
+---
 
-Prompt AI Internal (Termasuk di Aplikasi)
-Prompt Analisis Pertumbuhan
+## **Prompt AI Internal (Termasuk di Aplikasi)**
 
-“Analisis data pertumbuhan anak (tinggi badan, berat badan, usia) menggunakan standar WHO dan berikan insight, potensi masalah, serta rekomendasi yang dapat ditindaklanjuti.”
+### **Prompt Analisis Pertumbuhan**
 
-Prompt Evaluasi Milestone
+Analisis data pertumbuhan anak (tinggi badan, berat badan, usia) menggunakan standar WHO dan berikan insight, potensi masalah, serta rekomendasi yang dapat ditindaklanjuti.
 
-“Evaluasi checklist milestone ini dan tentukan apakah perkembangan anak normal, lebih cepat, atau terlambat.”
+### **Prompt Evaluasi Milestone**
 
-Prompt Nutrisi
+Evaluasi checklist milestone ini dan tentukan apakah perkembangan anak normal, lebih cepat, atau terlambat.
 
-“Buatkan rencana makan mingguan untuk anak usia ___ dengan preferensi ___ dan batasan ___. Sertakan ringkasan kalori dan nutrisi.”
+### **Prompt Nutrisi**
 
-Privasi & Keamanan Data
+Buatkan rencana makan mingguan untuk anak usia ___ dengan preferensi ___ dan batasan ___. Sertakan ringkasan kalori dan nutrisi.
 
-Tidak ada data yang dibagikan ke pihak ketiga
+---
 
-Data anak dienkripsi dan disimpan secara aman
+## **Privasi & Keamanan Data**
 
-Orang tua memiliki kendali penuh atas informasi mereka
+* Tidak ada data yang dibagikan ke pihak ketiga
+* Data anak dienkripsi dan disimpan secara aman
+* Orang tua memiliki kendali penuh atas informasi mereka
 
-Kontribusi
+---
 
-Kontribusi sangat terbuka!
-Silakan ajukan pull request atau buka issue jika Anda ingin meningkatkan proyek ini.
+## **Kontribusi**
 
-Lisensi
+Kontribusi sangat terbuka.
+Silakan ajukan pull request atau buka issue untuk pengembangan lebih lanjut.
 
-Proyek ini dilisensikan di bawah Lisensi MIT.
+---
+
+## **Lisensi**
+
+Proyek ini dilisensikan di bawah **Lisensi MIT**.
+
+---
+
+Kalau mau:
+
+* versi **README GitHub profesional**
+* versi **proposal startup / pitch deck**
+* versi **landing page**
+* atau **disesuaikan regulasi Indonesia (Kemenkes, IDAI)**
+
+tinggal bilang.
