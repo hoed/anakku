@@ -25,18 +25,17 @@ serve(async (req) => {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       });
     }
+
+    // Extract the token from "Bearer <token>"
+    const token = authHeader.replace('Bearer ', '');
     
     const supabaseClient = createClient(
       Deno.env.get('SUPABASE_URL') ?? '',
-      Deno.env.get('SUPABASE_ANON_KEY') ?? '',
-      {
-        global: {
-          headers: { Authorization: authHeader },
-        },
-      }
+      Deno.env.get('SUPABASE_ANON_KEY') ?? ''
     );
 
-    const { data: { user }, error: userError } = await supabaseClient.auth.getUser();
+    // Pass the token directly to getUser
+    const { data: { user }, error: userError } = await supabaseClient.auth.getUser(token);
     
     if (userError) {
       console.error("Auth error:", userError);
