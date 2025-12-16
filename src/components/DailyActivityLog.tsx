@@ -7,9 +7,11 @@ import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
-import { Plus, Moon, Utensils, Droplets, Monitor, Smile, Meh, Frown } from 'lucide-react';
+import { Plus, Moon, Utensils, Droplets, Monitor, Smile, Meh, Frown, Calendar } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { useGoogleCalendarSync } from '@/hooks/useGoogleCalendarSync';
 import { motion } from 'framer-motion';
+import { Badge } from '@/components/ui/badge';
 
 interface Activity {
   id: string;
@@ -23,6 +25,7 @@ interface Activity {
 
 interface DailyActivityLogProps {
   childId: string;
+  childName?: string;
 }
 
 const activityIcons: Record<string, any> = {
@@ -49,7 +52,7 @@ const moodIcons = [
   { value: 5, icon: Smile, color: 'text-emerald-500' },
 ];
 
-export const DailyActivityLog = ({ childId }: DailyActivityLogProps) => {
+export const DailyActivityLog = ({ childId, childName }: DailyActivityLogProps) => {
   const [activities, setActivities] = useState<Activity[]>([]);
   const [loading, setLoading] = useState(true);
   const [dialogOpen, setDialogOpen] = useState(false);
@@ -58,10 +61,14 @@ export const DailyActivityLog = ({ childId }: DailyActivityLogProps) => {
   const [moodRating, setMoodRating] = useState<number>(3);
   const [notes, setNotes] = useState('');
   const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0]);
+  const [syncToCalendarEnabled, setSyncToCalendarEnabled] = useState(false);
   const { toast } = useToast();
+  const { syncToCalendar, checkCalendarConnection } = useGoogleCalendarSync();
+  const [isCalendarConnected, setIsCalendarConnected] = useState(false);
 
   useEffect(() => {
     fetchActivities();
+    checkCalendarConnection().then(setIsCalendarConnected);
   }, [childId, selectedDate]);
 
   const fetchActivities = async () => {
@@ -121,9 +128,21 @@ export const DailyActivityLog = ({ childId }: DailyActivityLogProps) => {
         title: 'Berhasil!',
         description: 'Aktivitas berhasil ditambahkan',
       });
+
+      // Auto-sync feeding/nutrition to Google Calendar
+      if (syncToCalendarEnabled && isCalendarConnected && activityType === 'feeding') {
+        await syncToCalendar(
+          `Makan: ${value} porsi`,
+          notes || `Catatan makan untuk ${childName || 'anak'}`,
+          selectedDate,
+          childName
+        );
+      }
+
       setValue('');
       setMoodRating(3);
       setNotes('');
+      setSyncToCalendarEnabled(false);
       setDialogOpen(false);
       fetchActivities();
     }
@@ -148,24 +167,32 @@ export const DailyActivityLog = ({ childId }: DailyActivityLogProps) => {
   return (
     <Card className="shadow-card">
       <CardHeader>
-        <div className="flex items-center justify-between">
-          <CardTitle>Log Aktivitas Harian</CardTitle>
-          <div className="flex gap-2">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <CardTitle className="flex items-center gap-2">
+            Log Aktivitas Harian
+            {isCalendarConnected && (
+              <Badge variant="secondary" className="bg-green-500/20 text-green-600 text-xs">
+                <Calendar className="w-3 h-3 mr-1" />
+                Sync
+              </Badge>
+            )}
+          </CardTitle>
+          <div className="flex flex-wrap items-center gap-2">
             <Input
               type="date"
               value={selectedDate}
               onChange={(e) => setSelectedDate(e.target.value)}
               max={new Date().toISOString().split('T')[0]}
-              className="w-40"
+              className="w-36 sm:w-40 text-sm"
             />
             <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
               <DialogTrigger asChild>
-                <Button size="sm">
-                  <Plus className="w-4 h-4 mr-2" />
-                  Tambah
+                <Button size="sm" className="gap-1">
+                  <Plus className="w-4 h-4" />
+                  <span className="hidden sm:inline">Tambah</span>
                 </Button>
               </DialogTrigger>
-              <DialogContent>
+              <DialogContent className="max-w-md">
                 <DialogHeader>
                   <DialogTitle>Tambah Aktivitas</DialogTitle>
                 </DialogHeader>
@@ -226,9 +253,21 @@ export const DailyActivityLog = ({ childId }: DailyActivityLogProps) => {
                       value={notes}
                       onChange={(e) => setNotes(e.target.value)}
                       placeholder="Tambahkan catatan..."
-                      rows={3}
+                      rows={2}
                     />
                   </div>
+
+                  {isCalendarConnected && activityType === 'feeding' && (
+                    <label className="flex items-center gap-2 text-sm">
+                      <input
+                        type="checkbox"
+                        checked={syncToCalendarEnabled}
+                        onChange={(e) => setSyncToCalendarEnabled(e.target.checked)}
+                        className="rounded border-border"
+                      />
+                      Sinkronkan ke Google Calendar
+                    </label>
+                  )}
 
                   <Button type="submit" className="w-full">
                     Tambah Aktivitas
@@ -241,7 +280,7 @@ export const DailyActivityLog = ({ childId }: DailyActivityLogProps) => {
       </CardHeader>
       <CardContent className="space-y-6">
         {/* Summary Cards */}
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2 sm:gap-3">
           {Object.entries(activityLabels).map(([type, label]) => {
             const Icon = activityIcons[type];
             const summaryValue = type === 'mood' 
@@ -253,15 +292,15 @@ export const DailyActivityLog = ({ childId }: DailyActivityLogProps) => {
                 key={type}
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="p-4 bg-muted/50 rounded-lg"
+                className="p-3 sm:p-4 bg-muted/50 rounded-lg"
               >
-                <div className="flex items-center gap-2 mb-2">
-                  <Icon className="w-4 h-4 text-primary" />
-                  <span className="text-xs text-muted-foreground">{label}</span>
+                <div className="flex items-center gap-1.5 sm:gap-2 mb-1.5 sm:mb-2">
+                  <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-primary" />
+                  <span className="text-xs text-muted-foreground truncate">{label}</span>
                 </div>
-                <p className="text-xl font-bold">
+                <p className="text-lg sm:text-xl font-bold">
                   {summaryValue}
-                  {type !== 'mood' && <span className="text-sm ml-1">{getUnit(type)}</span>}
+                  {type !== 'mood' && <span className="text-xs sm:text-sm ml-1">{getUnit(type)}</span>}
                 </p>
               </motion.div>
             );

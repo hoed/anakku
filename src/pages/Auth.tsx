@@ -21,25 +21,28 @@ const Auth = () => {
   const { toast } = useToast();
 
   useEffect(() => {
-    console.log('=== AUTH PAGE MOUNTED ===');
+    // Check for hash fragment from OAuth callback
+    const hashParams = new URLSearchParams(window.location.hash.substring(1));
+    const accessToken = hashParams.get('access_token');
     
-    // Set up auth state listener FIRST
+    if (accessToken) {
+      // OAuth callback - let Supabase handle it
+      return;
+    }
+
+    // Set up auth state listener
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       (event, session) => {
-        console.log('Auth state change event:', event, 'session:', !!session);
-        // Only redirect on SIGNED_IN event, not on initial load
         if (event === 'SIGNED_IN' && session) {
-          console.log('SIGNED_IN event, redirecting to /');
-          navigate('/');
+          // Use setTimeout to avoid race conditions
+          setTimeout(() => navigate('/'), 100);
         }
       }
     );
 
-    // Then check for existing session
+    // Check for existing session
     supabase.auth.getSession().then(({ data: { session } }) => {
-      console.log('Auth page getSession result:', !!session);
       if (session) {
-        console.log('Session found on Auth page, redirecting to /');
         navigate('/');
       }
     });
@@ -125,7 +128,11 @@ const Auth = () => {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {
-        redirectTo: `${window.location.origin}/`,
+        redirectTo: window.location.origin,
+        queryParams: {
+          access_type: 'offline',
+          prompt: 'consent',
+        },
       },
     });
 
@@ -135,8 +142,8 @@ const Auth = () => {
         description: error.message,
         variant: 'destructive',
       });
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   return (
