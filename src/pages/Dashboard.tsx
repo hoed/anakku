@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
 import { Session } from '@supabase/supabase-js';
 import { Button } from '@/components/ui/button';
-import { LogOut, Baby, Menu } from 'lucide-react';
+import { LogOut, Baby, Menu, X } from 'lucide-react';
 import { ChildSelector } from '@/components/ChildSelector';
 import { GrowthChart } from '@/components/GrowthChart';
 import { MilestoneTracker } from '@/components/MilestoneTracker';
@@ -15,8 +15,10 @@ import { GeminiChatbot } from '@/components/GeminiChatbot';
 import { DiseaseDetection } from '@/components/DiseaseDetection';
 import { ShareLinkManager } from '@/components/ShareLinkManager';
 import { GoogleCalendar } from '@/components/GoogleCalendar';
-import { motion } from 'framer-motion';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { ImmunizationManager } from '@/components/ImmunizationManager';
+import { PhotoDevelopment } from '@/components/PhotoDevelopment';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Sheet, SheetContent, SheetTrigger, SheetClose } from '@/components/ui/sheet';
 
 interface Child {
   id: string;
@@ -31,6 +33,7 @@ const Dashboard = () => {
   const [selectedChild, setSelectedChild] = useState<Child | null>(null);
   const [latestMeasurement, setLatestMeasurement] = useState<any>(null);
   const [refreshKey, setRefreshKey] = useState(0);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     // Set up auth state listener FIRST
@@ -85,28 +88,19 @@ const Dashboard = () => {
   };
 
   const handleSignOut = async () => {
-    console.log('=== LOGOUT STARTED ===');
     try {
-      // Clear local state first
       setSession(null);
       setSelectedChild(null);
-      console.log('Local state cleared, calling signOut...');
-      // Sign out from Supabase and wait for it to complete
-      const { error } = await supabase.auth.signOut();
-      console.log('SignOut completed, error:', error);
+      await supabase.auth.signOut();
     } catch (error) {
-      console.log('Sign out exception:', error);
+      console.error('Sign out error:', error);
     }
-    // Check session after signout
-    const { data } = await supabase.auth.getSession();
-    console.log('Session after signOut:', data.session);
-    // Navigate after everything is done
-    console.log('Navigating to /auth...');
     navigate('/auth');
   };
 
   const handleChildSelect = (childId: string, child: Child) => {
     setSelectedChild(child);
+    setMobileMenuOpen(false);
   };
 
   if (!session) {
@@ -119,19 +113,19 @@ const Dashboard = () => {
       <motion.header
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        className="gradient-playful shadow-soft"
+        className="gradient-playful shadow-soft sticky top-0 z-40"
       >
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="p-2 bg-white rounded-full shadow-soft">
-                <Baby className="w-6 h-6 text-primary" />
+        <div className="container mx-auto px-3 sm:px-4 py-3 sm:py-4">
+          <div className="flex items-center justify-between gap-2">
+            <div className="flex items-center gap-2 sm:gap-3">
+              <div className="p-1.5 sm:p-2 bg-white rounded-full shadow-soft">
+                <Baby className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
               </div>
-              <h1 className="text-2xl font-bold text-white">Anakku+</h1>
+              <h1 className="text-xl sm:text-2xl font-bold text-white">Anakku+</h1>
             </div>
             
             {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center gap-4">
+            <div className="hidden md:flex items-center gap-3">
               <ChildSelector
                 selectedChildId={selectedChild?.id || null}
                 onChildSelect={handleChildSelect}
@@ -139,6 +133,7 @@ const Dashboard = () => {
               <Button 
                 onClick={handleSignOut} 
                 variant="outline" 
+                size="sm"
                 className="bg-white hover:bg-white/90 flex items-center gap-2"
               >
                 <LogOut className="w-4 h-4" />
@@ -147,26 +142,39 @@ const Dashboard = () => {
             </div>
 
             {/* Mobile Navigation */}
-            <Sheet>
+            <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
               <SheetTrigger asChild className="md:hidden">
-                <Button variant="ghost" size="icon" className="text-white">
-                  <Menu className="w-6 h-6" />
+                <Button variant="ghost" size="icon" className="text-white h-9 w-9">
+                  <Menu className="w-5 h-5" />
                 </Button>
               </SheetTrigger>
-              <SheetContent>
-                <div className="flex flex-col gap-4 mt-8">
-                  <ChildSelector
-                    selectedChildId={selectedChild?.id || null}
-                    onChildSelect={handleChildSelect}
-                  />
-                  <Button 
-                    onClick={handleSignOut} 
-                    variant="outline" 
-                    className="w-full flex items-center gap-2"
-                  >
-                    <LogOut className="w-4 h-4" />
-                    Keluar
-                  </Button>
+              <SheetContent side="right" className="w-[280px] sm:w-[320px]">
+                <div className="flex flex-col h-full">
+                  <div className="flex items-center justify-between mb-6">
+                    <h2 className="text-lg font-semibold">Menu</h2>
+                  </div>
+                  <div className="flex flex-col gap-4 flex-1">
+                    <div className="space-y-2">
+                      <p className="text-sm text-muted-foreground">Pilih Anak:</p>
+                      <ChildSelector
+                        selectedChildId={selectedChild?.id || null}
+                        onChildSelect={handleChildSelect}
+                      />
+                    </div>
+                  </div>
+                  <div className="pt-4 border-t">
+                    <Button 
+                      onClick={() => {
+                        setMobileMenuOpen(false);
+                        handleSignOut();
+                      }} 
+                      variant="outline" 
+                      className="w-full flex items-center justify-center gap-2"
+                    >
+                      <LogOut className="w-4 h-4" />
+                      Keluar
+                    </Button>
+                  </div>
                 </div>
               </SheetContent>
             </Sheet>
@@ -175,17 +183,17 @@ const Dashboard = () => {
       </motion.header>
 
       {/* Main Content */}
-      <main className="container mx-auto px-4 py-8">
+      <main className="container mx-auto px-3 sm:px-4 py-4 sm:py-8 pb-20">
         {selectedChild ? (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="space-y-6"
+            className="space-y-4 sm:space-y-6"
           >
             {/* Child Info & Actions */}
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
               <div>
-                <h2 className="text-3xl font-bold">Dashboard {selectedChild.name}</h2>
+                <h2 className="text-2xl sm:text-3xl font-bold">Dashboard {selectedChild.name}</h2>
                 <p className="text-muted-foreground">
                   {calculateAge(selectedChild.date_of_birth)} bulan
                 </p>
@@ -212,11 +220,17 @@ const Dashboard = () => {
               />
             )}
 
+            {/* Photo Development */}
+            <PhotoDevelopment childId={selectedChild.id} childName={selectedChild.name} />
+
             {/* Growth Chart */}
             <GrowthChart childId={selectedChild.id} key={`growth-${refreshKey}`} />
 
             {/* Milestones */}
             <MilestoneTracker childId={selectedChild.id} />
+
+            {/* Immunization Manager */}
+            <ImmunizationManager childId={selectedChild.id} childName={selectedChild.name} />
 
             {/* Disease Detection */}
             <DiseaseDetection />
@@ -228,17 +242,17 @@ const Dashboard = () => {
             <ShareLinkManager childId={selectedChild.id} />
 
             {/* Daily Activity Log */}
-            <DailyActivityLog childId={selectedChild.id} />
+            <DailyActivityLog childId={selectedChild.id} childName={selectedChild.name} />
           </motion.div>
         ) : (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="text-center py-20"
+            className="text-center py-12 sm:py-20"
           >
-            <Baby className="w-20 h-20 mx-auto mb-6 text-muted-foreground opacity-50" />
-            <h2 className="text-2xl font-bold mb-2">Belum ada anak dipilih</h2>
-            <p className="text-muted-foreground">
+            <Baby className="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-4 sm:mb-6 text-muted-foreground opacity-50" />
+            <h2 className="text-xl sm:text-2xl font-bold mb-2">Belum ada anak dipilih</h2>
+            <p className="text-muted-foreground px-4">
               Silakan tambahkan atau pilih anak untuk mulai melacak pertumbuhan mereka
             </p>
           </motion.div>
